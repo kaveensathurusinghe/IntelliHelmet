@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intellihelmet</title>
+    
+        <link rel="stylesheet" type="text/css" href="login.css" />
+    
+</head>
+<body>
+    <div id="background"></div>
+    <form onsubmit="return test()">
+        <div id="content"><h1>Welcome</h1></div>
+        <!-- Username Field -->
+        <div class="form-field">
+            <input type="text" id="username" placeholder="Email / Username" required/>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-field">
+            <input type="password" id="password" placeholder="Password" required/>
+        </div>
+        <a href="registration form.html" target = "_self">Sign Up</a>
+        <!-- Login Button -->
+        <div class="form-field">
+            <button class="btn" type="submit">Log in</button>
+        </div>
+    </form>
+    <script>
+        function test() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username === "admin@gmail.com" && password === "admin123") {
+                alert("Login Successfully");
+                console.log("Opening html");
+                window.open("index.html");
+                return false; // Prevent form submission
+            } else {
+                alert("Invalid Information");
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=dashboardTitle%></title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp"
+      rel="stylesheet"
+    />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" 
+    />
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img src="images/logo.png" alt="" />
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-symbols-sharp"> close </span>
+          </div>
+        </div>
+        <div class="sidebar">
+          <button id="mqttButton">
+            <a href="#" class="active">
+              <span class="material-symbols-outlined"> error </span>
+              <h3>Emergency</h3>
+            </a>
+          </button>
+            <button id="offButton">
+              <a href="#" class="active">
+                <span class="material-symbols-outlined"> cancel </span>
+                <h3>Stop Alert</h3>
+              </a>
+            </button>
+        </div>
+      </aside>
+      <main>
+        <h1><%=dashboardTitle%></h1>
+        <div class="connection-status">
+          <h3>Connection Status: <span class="status">Disconnected</span></h3>
+        </div>
+        <div class="insights">
+          <div class="b_temperature">
+            <div class="middle">
+              <div class="left">
+                <h3>Body Temperature</h3>
+                <h1 id="b_temperature"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-sharp"> device_thermostat </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of B_temperature -->
+          <div class="e_temperature">
+            <div class="middle">
+              <div class="left">
+                <h3>Environment Temperature</h3>
+                <h1 id="e_temperature"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-sharp"> device_thermostat </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of E_temperature -->
+          <div class="pressure">
+            <div class="middle">
+              <div class="left">
+                <h3>Pressure</h3>
+                <h1 id="pressure"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-sharp"> speed </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of pressure -->
+          <div class="altitude">
+            <div class="middle">
+              <div class="left">
+                <h3>Approx Altitude</h3>
+                <h1 id="altitude"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-sharp"> altitude </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of altitude -->
+          <div class="bpm">
+            <div class="middle">
+              <div class="left">
+                <h3>Heart Rate(BPM)</h3>
+                <h1 id="bpm"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-outlined">
+                  ecg
+                  </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of BPM -->
+          <div class="airquality">
+            <div class="middle">
+              <div class="left">
+                <h3>Air Quality</h3>
+                <h1 id="airquality"></h1>
+              </div>
+                <span class="material-symbols-outlined">
+                  pulmonology
+                  </span>
+            </div>
+          </div>
+          <!-- End of Air Quality -->
+          <div class="spo2">
+            <div class="middle">
+              <div class="left">
+                <h3>Blood Oxygen(spO2)</h3>
+                <h1 id="spo2"></h1>
+              </div>
+              <div class="icon">
+                <span class="material-symbols-outlined">
+                  spo2
+                  </span>
+              </div>
+            </div>
+          </div>
+          <!-- End of spo2 -->
+        </div>
+        <!-- End of Insights -->
+        <div class="histories">
+          <h2>Historical Charts</h2>
+          <div class="history-charts">
+            <div id="b_temperature-history" class="history-divs"></div>
+            <div id="e_temperature-history" class="history-divs"></div>
+            <div id="pressure-history" class="history-divs"></div>
+            <div id="altitude-history" class="history-divs"></div>
+            <div id="bpm-history" class="history-divs"></div>
+            <div id="airquality-history" class="history-divs"></div>
+            <div id="spo2-history" class="history-divs"></div>
+          </div>
+        </div>
+      </main>
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-symbols-sharp"> menu </span>
+          </button>
+          <div class="theme-toggler">
+            <span class="material-symbols-sharp active"> light_mode </span>
+            <span class="material-symbols-sharp"> dark_mode </span>
+          </div>
+        </div>
+        <!-- End of top -->
+        <div class="gauge-charts">
+          <h2>Gauge Charts</h2>
+          <div class="item">
+            <div id="b_temperature-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="e_temperature-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="pressure-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="altitude-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="bpm-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="airquality-gauge"></div>
+          </div>
+          <div class="item">
+            <div id="spo2-gauge"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./mqttService.js"></script>
+  </body>
+</html>
